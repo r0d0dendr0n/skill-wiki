@@ -57,9 +57,9 @@ class WikipediaSkill(MycroftSkill):
         self.speak_dialog("searching", {"query": search})
 
         try:
-            self._lookup(search)
-        except wiki.PageError:
             self._lookup(search, auto_suggest=False)
+        except wiki.PageError:
+            self._lookup(search, auto_suggest=True)
         except Exception as e:
             self.log.error("Error: {0}".format(e))
 
